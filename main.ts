@@ -326,6 +326,16 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         mySprite.vy += -150
     }
 })
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.setImage(assets.image`Peter Francis Gerracci`)
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.setImage(assets.image`Peter Francis Gerracci0`)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
+    game.gameOver(true)
+    game.setGameOverEffect(true, effects.dissolve)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.confetti, 500)
     info.changeLifeBy(1)
@@ -471,6 +481,7 @@ tiles.setCurrentTilemap(tilemap`level2`)
 scene.cameraFollowSprite(mySprite)
 controller.moveSprite(mySprite, 100, 0)
 mySprite.ay = 200
+tiles.placeOnRandomTile(mySprite, sprites.swamp.swampTile3)
 info.setLife(3)
 info.setScore(0)
 Spawn_Enemy()
